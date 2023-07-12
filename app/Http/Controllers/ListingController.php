@@ -19,4 +19,24 @@ class ListingController extends Controller
             'listing' => $listing
         ]);
     }
+
+    public function create(){
+        return view('listings.create');
+    }
+
+    //store listing data  'unique:posts'
+    public function store(Request $request){
+       $formFields = $request->validate([
+            'title' => 'required',
+            'company' => ['required', 'unique:listings'],
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
+       ]);
+
+        Listing::create($formFields);
+        return redirect ('/');
+    }
 }
