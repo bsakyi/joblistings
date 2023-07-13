@@ -6,7 +6,7 @@
 <div class="mx-4">
   <x-card>
       <div class="flex flex-col items-center justify-center text-center">
-          <img class="w-48 mr-6 mb-6" src="asset{{'images/no-image.png'}}" alt="" />
+          <img class="w-48 mr-6 mb-6" src= {{$listing->logo ? asset('storage/' . $listing->logo) : asset("images/no-image.png")}} alt="Company Logo"/>
 
           <h3 class="text-2xl mb-2">{{$listing->title}}</h3>
           <div class="text-xl font-bold mb-4">{{$listing->company}}</div>
@@ -30,6 +30,10 @@
               </div>
           </div>
       </div>
+        <x-card class="mt-4 p-2 flex space-x-6" >
+            <a href="{{$listing->id}}/edit">
+              <i class = "fa-solid fa-pencil">Edit</i> </a>  
+        </x-card>
     </x-card>
 </div>
   @endsection
